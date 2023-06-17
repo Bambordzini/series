@@ -29,47 +29,29 @@
     <!-- page specific styling -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style/detailed-view.css') }}">
 </head>
-
 <body>
-<div id="body-wrapper">
-    <header class="clearfix">
-        <img id="header-logo" src="{{ url_for('static', filename='assets/codecool-logo.png') }}" alt="Codecool Logo">
-        <span id="header-title" class="title"><a href="{{ url_for('index') }}">Codecool Series DB</a></span>
-        <div id="header-auth">
-            <button type="button" id="bt-register">Register</button>
-            <button type="button" id="bt-login">Login</button>
+<div class="card detailed-view">
+
+    <p>And here is a "detailed" kind of view:</p>
+    <div class="row">
+        <img src="http://www.impawards.com/2016/posters/deadpool_ver5.jpg" alt="Deadpool poster"
+             class="poster col col-third">
+        <div class="col col-twothird">
+            {% for detail_in_show in show%}
+            <h2>{{detail_in_show["title"]}}</h2>
+            <p class="small grayed">{{detail_in_show["runtime"]}} <span class="separator">|</span>{{detail_in_show["genres_names"]}}  <span
+                    class="separator">|</span> 12 February 2016 (USA)</p>
+            <p>{{detail_in_show["overview"]}}</p>
+
+                
         </div>
-    </header>
-    <section>
-        <h1 class="title text-center">Welcome page</h1>
-        <h2 class="title text-center"><a href="{{ url_for('shows_most_rated') }}">Most rated shows</a></h2>
-        <div class="card">
-            <h2>Welcome TV show lovers!</h2>
-            <p>This great site is happy to bring you your favourite TV show's <i>details</i>.</p>
-            <p></p>
-            <p>Okay, actually this is a designed dumb page without any logic.</p>
-            <p>You can find a navigational element, the so called "breadcrumb" above the page's title. Use it for
-                in-depth
-                navigation.
-            </p>
-        </div>
-        <div class="card">
-            <ul>
-                {% for show in shows %}
-                    <li>
-                        <a href="{{ '/tv-show/' + (show['id'] | string) }}">{{ show['title'] }}</a>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-    </section>
-    <footer>
-        Copyright, bla-bla
-    </footer>
-</div>
-<div class="background">
-    <div class="dark-blue-layer"></div>
-    <div class="light-blue-layer"></div>
+    </div>
+    <div>
+        
+        <p><b>Stars:</b>&nbsp;<a href="#">{{detail_in_show["actors_names"]}}</a>, <a href="#">{{detail_in_show["actors_names"]}}</a>, <a href="#">T.J.
+            Miller</a></p>
+            {%endfor%}
+    </div>
 </div>
 </body>
 </html>
